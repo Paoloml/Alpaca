@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)file:///C:/Users/carlo/Downloads/html/Untitled-1.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpaca</title>
+    <link rel="stylesheet" href="file:///C:/Users/carlo/Downloads/html/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFA500; /* Fondo naranja */
+        }
+        header {
+            background-color: #35424a;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+        }
+        .menu {
+            display: inline-block;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        .pause-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: #35424a;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .music-label {
+            position: absolute;
+            right: 10px;
+            top: 35px; /* Ajustar para que esté justo debajo del botón */
+            color: #ffffff; /* Color del texto */
+            font-size: 12px; /* Tamaño de fuente pequeño */
+            pointer-events: none; /* Evitar que interfiera con el botón */
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .dropdown a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: #35424a;
+        }
+        .dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        .logo {
+            max-width: 150px; /* Tamaño máximo del logo */
+            margin: 0 auto; /* Centrar el logo */
+            display: block; /* Mostrar el logo como bloque */
+        }
+        .category {
+            margin: 20px;
+            padding: 10px;
+        }
+        .category h2 {
+            text-align: center;
+            color: #35424a;
+        }
+        .product {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #35424a;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Estilo del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reproductor de música -->
+    <audio id="background-audio" autoplay="" loop="">
+        <source src="./MegaPacaa_files/crustacio cascarudo.mp3" type="audio/mpeg">
+        <source src="musica.ogg" type="audio/ogg">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+
+<header>
+    <div class="menu">
+        <button class="menu-button" onclick="toggleDropdown()">☰</button>
+        <div class="dropdown" id="dropdown">
+            <a href="javascript:void(0)" onclick="openModal(&#39;acercaModal&#39;)">Acerca de nosotros</a>
+            <a href="javascript:void(0)" onclick="openModal(&#39;fundadoresModal&#39;)">Fundadores</a>
+        </div>
+    </div>
+    <img src="./Alpaca_files/logo alpaca.jpeg" alt="Logo" class="logo"> <!-- Espacio para el logo -->
+    <h1>Alpaca</h1>
+    <p>Tu estilo, nuestra pasión</p>
+    <button class="pause-button" id="pause-button" onclick="toggleAudio()">Pausar</button>
+    <span class="music-label">tocame</span> <!-- Texto que indica que hay música -->
+</header>
+
+<section class="category" id="hombre">
+    <h2>Ropa para Hombre</h2>
+    <div class="products">
+        <div class="product">
+            <h3>Camisa Casual</h3>
+            <img src="./Alpaca_files/camisa formal.jpg" alt="Camisa Casual" style="width:100%; max-width:200px;">
+            <p>Precio: Q150.00</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product">
+            <h3>Jeans</h3>
+            <img src="./Alpaca_files/jeans.jpg" alt="Jeans" style="width:100%; max-width:200px;">
+            <p>Precio: Q200.00</p>
+            <button>Comprar</button>
+        </div>
+    </div>
+</section>
+
+<section class="category" id="mujer">
+    <h2>Ropa para Mujer</h2>
+    <div class="products">
+        <div class="product">
+            <h3>Vestido de Verano</h3>
+            <img src="./Alpaca_files/vestido mujer.jpg" alt="Vestido de Verano" style="width:100%; max-width:200px;">
+            <p>Precio: Q175.00</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product">
+            <h3>Blusa Elegante</h3>
+            <img src="./Alpaca_files/blusa mujer.jpg" alt="Blusa Elegante" style="width:100%; max-width:200px;">
+            <p>Precio: Q100.00</p>
+            <button>Comprar</button>
+        </div>
+    </div>
+</section>
+
+<section class="category" id="niño">
+    <h2>Ropa para Niño</h2>
+    <div class="products">
+        <div class="product">
+            <h3>Camiseta Infantil</h3>
+            <img src="./Alpaca_files/camisa niño.jpg" alt="Camiseta Infantil" style="width:100%; max-width:200px;">
+            <p>Precio: Q75.00</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product">
+            <h3>Pantalones Cortos</h3>
+            <img src="./Alpaca_files/short niño.jpg" alt="Pantalones Cortos" style="width:100%; max-width:200px;">
+            <p>Precio: Q90.00</p>
+            <button>Comprar</button>
+        </div>
+    </div>
+</section>
+
+<!-- Modal para Acerca de Nosotros -->
+<div id="acercaModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal(&#39;acercaModal&#39;)">×</span>
+        <h2>Acerca de Nosotros</h2>
+        <p><strong>Misión:</strong> Proporcionar ropa de calidad a precios accesibles, asegurando la satisfacción de nuestros clientes.</p>
+        <p><strong>Visión:</strong> Ser la tienda de ropa más confiable en línea en Guatemala.</p>
+    </div>
+</div>
+
+<!-- Modal para Fundadores -->
+<div id="fundadoresModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal(&#39;fundadoresModal&#39;)">×</span>
+        <h2>Fundadores</h2>
+        <div class="products">
+            <div class="product">
+                <img src="./Alpaca_files/rata icon.png" alt="Fundador 1" style="width:100%; max-width:200px;">
+                <p>Sergio Paolo Lopez Morales</p>
+            </div>
+            <div class="product">
+                <img src="./Alpaca_files/scott.jpeg" alt="Fundador 2" style="width:100%; max-width:200px;">
+                <p>David Alejandro Rojas Morales</p>
+            </div>
+            <div class="product">
+                <img src="./Alpaca_files/doom.jpeg" alt="Fundador 3" style="width:100%; max-width:200px;">
+                <p>Bryan Ernesto Ventura Castaneda</p>
+            </div>
+            <div class="product">
+                <img src="./Alpaca_files/mondongo.jpg" alt="Fundador 4" style="width:100%; max-width:200px;">
+                <p>Benigno Ricardo Coj Santay</p>
+            </div>
+            <div class="product">
+                <img src="./Alpaca_files/ceviche.jpg" alt="Fundador 5" style="width:100%; max-width:200px;">
+                <p>German Francisco Armas Argueta</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2024 Alpaca. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+
+    function toggleAudio() {
+        var audio = document.getElementById("background-audio");
+        var button = document.getElementById("pause-button");
+        if (audio.paused) {
+            audio.play();
+            button.innerHTML = "Pausar";
+        } else {
+            audio.pause();
+            button.innerHTML = "Reanudar";
+        }
+    }
+
+    // Cerrar el modal si se hace clic fuera de él
+    window.onclick = function(event) {
+        var modalAcerca = document.getElementById('acercaModal');
+        var modalFundadores = document.getElementById('fundadoresModal');
+        if (event.target == modalAcerca || event.target == modalFundadores) {
+            modalAcerca.style.display = "none";
+            modalFundadores.style.display = "none";
+        }
+    }
+</script>
+
+
+
+</body></html>
